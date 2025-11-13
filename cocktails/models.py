@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
+# from cloudinary.models import CloudinaryField
 
 
 class GlassType(models.Model):
@@ -85,11 +85,11 @@ class Cocktail(models.Model):
         related_name="cocktails"
     )
 
-    image = CloudinaryField(
-        "image",
-        default="placeholder",
-        blank=True, null=True
-    )
+    # image = CloudinaryField(
+    #     "image",
+    #     default="placeholder",
+    #     blank=True, null=True
+    # )
 
     source_type = models.ForeignKey(
         SourceType,
