@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Cocktail
+
+
+class CocktailListView(generic.ListView):
+    model = Cocktail
+    template_name = "cocktails/cocktails_list.html"
+    context_object_name = "cocktails"
 
 
 # Create your views here.
-def cocktail_list(request):
-    return HttpResponse("List of cocktails")

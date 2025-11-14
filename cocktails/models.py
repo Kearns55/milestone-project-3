@@ -27,6 +27,7 @@ class SourceType(models.Model):
 class Cocktail(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
 
     author = models.ForeignKey(
         User,
@@ -67,9 +68,14 @@ class Cocktail(models.Model):
         null=True, blank=True,
         related_name="cocktails"
     )
+    
+    class Meta:
+        ordering = ['-created_on']
 
     def __str__(self):
-        return self.name
+        vowels = 'AEIOU'
+        article = 'an' if self.name[0] in vowels else 'a'
+        return f"The recipe for {article} {self.name} | written by {self.author}"
 
     # Helpers — MUST be inside the class
     def ingredients_list(self):
@@ -101,7 +107,10 @@ class Comment(models.Model):
     )
     body = models.TextField()
     approved = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['created_on']   
 
     def __str__(self):
         return f"Comment by {self.author.username} on {self.cocktail.name}"
