@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os
 from pathlib import Path
+import os
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
@@ -28,9 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com',]
+
+ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', 'https://*.codeinstitute-ide.net/']
 
 
 # Application definition
@@ -87,8 +88,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # Password validation
