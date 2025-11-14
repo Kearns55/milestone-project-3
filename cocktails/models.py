@@ -69,6 +69,8 @@ class Cocktail(models.Model):
         related_name="cocktails"
     )
     
+    approved = models.BooleanField(default=False)
+    
     class Meta:
         ordering = ['-created_on']
 
