@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
     <h1>Posts list</h1>
     {% for cocktail in cocktails %}
     <h2>{{cocktail.name}}</h2>
-    <p>{{cocktail.description}}</p>
+    <p>{{cocktail.description|safe}}</p>
     <p>Author: {{cocktail.author}}</p>
     {% endfor %}
 </body>
