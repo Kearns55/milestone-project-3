@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+
+                <h1 class="cocktail-title">{{ cocktail.name }}</h1>
+
+                <p class="cocktail-subtitle">
+                    {{ cocktail.author }} | {{ cocktail.created_on|date:"M d, Y" }}
+                </p>
+            </div>
+
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- Optional image -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- DESCRIPTION -->
+    <div class="row">
+        <div class="col card mb-4 mt-3 left top">
+            <div class="card-body">
+                <h3>Description</h3>
+                <p>{{ cocktail.description | safe }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="row">
+        <div class="col card mb-4 left top">
+            <div class="card-body">
+                <h3>Ingredients</h3>
+                <ul>
+                    {% for item in cocktail.ingredients_list %}
+                        <li>{{ item | safe }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSTRUCTIONS -->
+    <div class="row">
+        <div class="col card mb-4 left top">
+            <div class="card-body">
+                <h3>Instructions</h3>
+                <ol>
+                    {% for step in cocktail.instructions_list %}
+                        <li>{{ step | safe}}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- GARNISH -->
+    {% if cocktail.garnish %}
+    <div class="row">
+        <div class="col card mb-4 left top">
+            <div class="card-body">
+                <h3>Garnish</h3>
+                <p>{{ cocktail.garnish }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

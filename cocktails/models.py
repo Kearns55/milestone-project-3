@@ -28,6 +28,7 @@ class Cocktail(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
 
     author = models.ForeignKey(
         User,
