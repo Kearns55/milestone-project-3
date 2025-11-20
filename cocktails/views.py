@@ -1,14 +1,29 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views import generic
+from django.db.models import Q
 from django.contrib import messages
+from django.utils.text import slugify
 from .models import Cocktail
-from .forms import CommentForm
+from .forms import CommentForm, CocktailForm
 
 
 class CocktailListView(generic.ListView):
-    queryset = Cocktail.objects.all().filter(approved=True)
-    template_name = "cocktails/index.html"
+    template_name = "cocktails/cocktails.html"
     paginate_by = 6
+
+    def get_queryset(self):
+        queryset = Cocktail.objects.all()
+
+        if self.request.user.is_authenticated:
+            # Show:
+            # - all approved cocktails
+            # - plus this user's cocktails even if not approved
+            return queryset.filter(
+                Q(approved=True) | Q(author=self.request.user)
+            ).distinct()
+
+        # Guest users only see approved cocktails
+        return queryset.filter(approved=True)
 
 
 # Create your views here.
