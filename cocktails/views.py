@@ -88,6 +88,7 @@ def add_cocktail(request):
     }
     return render(request, template, context)
 
+
 def update_cocktail(request, pk, slug):
     """ Update a specific cocktail for authenticated users only. """
     cocktail = get_object_or_404(Cocktail, pk=pk)
@@ -115,3 +116,18 @@ def update_cocktail(request, pk, slug):
     }
     return render(request, template, context)
 
+
+def delete_cocktail(request, pk, slug):
+    """ Delete a specific cocktail for authenticated users only. """
+    cocktail = get_object_or_404(Cocktail, pk=pk)
+    # Check if valid user to delete this cocktail
+    if cocktail.author != request.user:
+        messages.error(request, "Access Denied: Not your cocktail")
+        return redirect("cocktails")
+    # Correct user, proceed with delete
+    cocktail.delete()
+    messages.success(
+        request,
+        "Cocktail deleted successfully!"
+    )
+    return redirect('cocktails')

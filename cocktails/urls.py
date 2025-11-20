@@ -15,3 +15,9 @@ urlpatterns = [
         views.update_cocktail,
         name='update_cocktail'
     ),
+    path(
+        'delete_cocktail/<int:pk>/<slug:slug>/',
+        views.delete_cocktail,
+        name='delete_cocktail'
+    ),
+]
