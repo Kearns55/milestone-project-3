@@ -88,3 +88,30 @@ def add_cocktail(request):
     }
     return render(request, template, context)
 
+def update_cocktail(request, pk, slug):
+    """ Update a specific cocktail for authenticated users only. """
+    cocktail = get_object_or_404(Cocktail, pk=pk)
+    # Check if valid user to edit this cocktail
+    if cocktail.author != request.user:
+        messages.error(request, "Access Denied: Not your cocktail")
+        return redirect("cocktails")
+    # Correct user, proceed with update
+    cocktail_form = CocktailForm(request.POST or None, instance=cocktail)
+    if request.method == 'POST':
+        if cocktail_form.is_valid():
+            cocktail_form.instance.approved = False
+            cocktail_form.instance.slug = slugify(request.POST.get("name"))
+            cocktail_form.save()
+            messages.success(
+                request,
+                "Cocktail updated successfully, and pending!"
+            )
+            return redirect(cocktail_detail, pk, slug)
+        messages.error(request, 'Error updating cocktail, please try again.')
+    template = "cocktails/update_cocktail.html"
+    context = {
+        'form': cocktail_form,
+        'cocktail': cocktail,
+    }
+    return render(request, template, context)
+

@@ -10,4 +10,8 @@ urlpatterns = [
         name='cocktail_detail'
     ),
     path('add_cocktail/', views.add_cocktail, name='add_cocktail'),
-]
+    path(
+        'update_cocktail/<int:pk>/<slug:slug>/',
+        views.update_cocktail,
+        name='update_cocktail'
+    ),
