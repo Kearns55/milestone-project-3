@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- cocktails.html content starts here -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Loop Cocktails -->
+        <div class="col-12 mt-3 left">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {% for cocktail in cocktail_list %}
+                <div class="col">
+                    <div class="card h-100 mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                <div class="image-flash">
+                                    <p class="author">Author: {{ cocktail.author }}</p>
+                                </div>
+                            </div>
+                            {% if not cocktail.approved %}
+                                <span class="badge rounded-pill text-bg-warning">Pending Approval</span>
+                            {% endif %}
+                            <a href="{% url 'cocktail_detail' pk=cocktail.pk slug=cocktail.slug %}" class="cocktail-link">
+                                <h2 class="card-title">{{ cocktail.name }}</h2>
+                            </a>
+                            <p class="card-text">{{ cocktail.description | safe }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text text-secondary fs-6">{{ cocktail.created_on}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+<!-- cocktails.html content ends here -->
+{% endblock %}
