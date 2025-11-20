@@ -63,3 +63,28 @@ def cocktail_detail(request, pk, slug):
         "comment_form": comment_form,
     }
     return render(request, template, context)
+
+
+def add_cocktail(request):
+    """ Add cocktail for authenticated users only. """
+    if not request.user.is_authenticated:
+        messages.error(request, "You must be logged-in to add a cocktail")
+        return redirect("cocktails")
+    # User is logged in - proceed
+    cocktail_form = CocktailForm(request.POST or None)
+    if request.method == 'POST':
+        if cocktail_form.is_valid():
+            cocktail_form.instance.author = request.user
+            cocktail_form.instance.slug = slugify(request.POST.get("name"))
+            new_cocktail = cocktail_form.save()
+            cocktail_id = new_cocktail.pk
+            cocktail_slug = new_cocktail.slug
+            messages.success(request, "Cocktail added successfully!")
+            return redirect(cocktail_detail, cocktail_id, cocktail_slug)
+        messages.error(request, 'Error adding cocktail, please try again.')
+    template = "cocktails/add_cocktail.html"
+    context = {
+        'form': cocktail_form,
+    }
+    return render(request, template, context)
+
