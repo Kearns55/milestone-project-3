@@ -30,7 +30,7 @@
     <nav>
         <a href="{% url 'home' %}">Home</a> |
         <a href="{% url 'cocktails' %}">Cocktails</a> |
-        <a href="#">Contact</a>
+        <a href="{% url 'contact' %}">Contact Me</a>
 
         {% if user.is_authenticated %}
         <li class="nav-item">
