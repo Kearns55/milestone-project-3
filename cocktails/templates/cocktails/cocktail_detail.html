@@ -16,14 +16,18 @@
                 <!-- is the user logged-in and owns this cocktail -->
                 {% if request.user == cocktail.author %}
                     <a href="{% url 'update_cocktail' cocktail.pk cocktail.slug %}" class="btn btn-success">Update</a>
-                    <a href="!" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ cocktail.id }}">Delete</a>
+                <a href="!" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#modal-delete-{{ cocktail.id }}">Delete</a>
                     <!-- confirm delete cocktail modal -->
-                    <div class="modal fade" id="modal-delete-{{ cocktail.id }}" tabindex="-1" aria-labelledby="modal-delete-{{ cocktail.id }}-label" aria-hidden="true">
+                <div class="modal fade" id="modal-delete-{{ cocktail.id }}" tabindex="-1"
+                    aria-labelledby="modal-delete-{{ cocktail.id }}-label" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="modal-delete-{{ cocktail.id }}-label">Delete Cocktail</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h1 class="modal-title fs-5" id="modal-delete-{{ cocktail.id }}-label">Delete Cocktail
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 Are you sure you want to delete <span class="text-danger">{{ cocktail.name }}</span>?
@@ -32,7 +36,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                                <a href="{% url 'delete_cocktail' cocktail.pk cocktail.slug %}" class="btn btn-success">Confirm Delete</a>
+                                <a href="{% url 'delete_cocktail' cocktail.pk cocktail.slug %}"
+                                    class="btn btn-success">Confirm Delete</a>
                             </div>
                             </div>
                         </div>
@@ -46,7 +51,9 @@
             </div>
 
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- Optional image -->
+                {% if cocktail.image %}
+                <img src="{{ cocktail.image.url }}" alt="{{ cocktail.name }}" class="img-fluid rounded shadow">
+                {% endif %}
             </div>
         </div>
     </div>

@@ -2,55 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
 <div class="container mt-5 mb-5">
     <h1 class="text-center mb-4">Let's talk!</h1>
 
-    <form method="POST" class="mx-auto" style="max-width: 600px;" id="contact-form">
+    <form method="POST" action="{% url 'contact' %}" class="mx-auto" style="max-width: 600px;" id="contact-form">
         {% csrf_token %}
-        {% crispy form %}
+        {{ form|crispy }}
 
-        <!-- this is NOT a submit button, it opens the modal -->
-        <button type="button" class="btn btn-primary w-100"
-                data-bs-toggle="modal"
-                data-bs-target="#modal-contact-confirm">
-            Send Message
-        </button>
+        <button type="submit" class="btn btn-primary w-100">Send Message</button>
     </form>
 </div>
-
-<!-- CONFIRM SEND MODAL (no JS needed) -->
-<div class="modal fade" id="modal-contact-confirm" tabindex="-1"
-     aria-labelledby="modal-contact-confirm-label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="modal-contact-confirm-label">
-                    Confirm Send
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body">
-                Are you sure you want to send this message?
-                <br>
-                <small class="text-secondary">We`ll reply as soon as possible.</small>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    Cancel
-                </button>
-
-                <!-- THIS is the real submit button -->
-                <button type="submit" form="contact-form" class="btn btn-success">
-                    Yes, Send Message
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 {% endblock %}

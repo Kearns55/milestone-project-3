@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .forms import ContactForm
-
-"""View for handling contact form submissions."""
 
 
 def contact_view(request):
@@ -9,7 +8,10 @@ def contact_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("home")   # <-- send user to home page
+            messages.success(request, "Your message has been sent!")
+            return redirect("home")
+        else:
+            messages.error(request, "There was an error sending your message. Please try again.")
     else:
         form = ContactForm()
 
