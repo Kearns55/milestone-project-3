@@ -71,7 +71,7 @@ def add_cocktail(request):
         messages.error(request, "You must be logged-in to add a cocktail")
         return redirect("cocktails")
     # User is logged in - proceed
-    cocktail_form = CocktailForm(request.POST or None)
+    cocktail_form = CocktailForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
         if cocktail_form.is_valid():
             cocktail_form.instance.author = request.user
@@ -97,7 +97,9 @@ def update_cocktail(request, pk, slug):
         messages.error(request, "Access Denied: Not your cocktail")
         return redirect("cocktails")
     # Correct user, proceed with update
-    cocktail_form = CocktailForm(request.POST or None, instance=cocktail)
+    cocktail_form = CocktailForm(request.POST or None,
+                                 request.FILES or None,
+                                 instance=cocktail)
     if request.method == 'POST':
         if cocktail_form.is_valid():
             cocktail_form.instance.approved = False

@@ -12,7 +12,7 @@ class CocktailForm(forms.ModelForm):
     class Meta:
         model = Cocktail
         fields = (
-            'name', 'description', 'ingredients',
+            'name', 'description', 'image', 'ingredients',
             'garnish', 'instructions', 'glass_type',
             'source_type', 'category'
         )

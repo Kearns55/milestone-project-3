@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField
 
 
 class GlassType(models.Model):
@@ -27,6 +27,7 @@ class SourceType(models.Model):
 class Cocktail(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
+    image = CloudinaryField('image', blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
 
