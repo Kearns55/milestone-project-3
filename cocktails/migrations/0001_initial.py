@@ -27,6 +27,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=150)),
                 ('description', models.TextField()),
+                ('image', cloudinary.models.CloudinaryField(blank=True, max_length=255, null=True, verbose_name='image')),
                 ('created_on', models.DateTimeField(auto_now_add=True)),
                 ('slug', models.SlugField(blank=True, max_length=150, null=True, unique=True)),
                 ('ingredients', models.TextField(help_text='One ingredient per line.')),

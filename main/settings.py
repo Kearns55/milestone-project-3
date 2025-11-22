@@ -15,6 +15,10 @@ import os
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,10 +58,20 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
+    'cloudinary',
+    'cloudinary_storage',
     'cocktails',
     'home',
     'contact',
 ]
+
+cloudinary.config(
+    cloudinary_url=os.environ.get('CLOUDINARY_URL')
+)
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
@@ -91,6 +105,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "cocktails.context_processors.categories",
             ],
         },
     },
