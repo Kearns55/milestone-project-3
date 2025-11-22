@@ -14,13 +14,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gargle Guardian</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Google Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Space+Grotesk&display=swap');
+    </style>
 </head>
 
 <body>
-    
 
     <header>
         <h1>The Gargle Guardian</h1>
@@ -46,42 +50,42 @@
                 </ul>
             </li>
 
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link {% if request.path == add_cocktail %}active{% endif %}" aria-current="page"
-                href="{% url 'add_cocktail' %}">Add Cocktail</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == add_cocktail %}active{% endif %}" aria-current="page"
+                    href="{% url 'add_cocktail' %}">Add Cocktail</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
                     href="{% url 'account_logout' %}">Sign out</a>
-        </li>
-        {% else %}
+            </li>
+            {% else %}
             <li class="nav-item">
                 <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
                     href="{% url 'account_login' %}">Sign in</a>
             </li>
-        <li class="nav-item">
-            <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                href="{% url 'account_signup' %}">Register</a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                    href="{% url 'account_signup' %}">Register</a>
+            </li>
 
-        </li>
-        {% endif %}
+            </li>
+            {% endif %}
         </ul>
     </nav>
     <!-- displaying Django messages -->
     {% if messages %}
-        <section id="alerts">
-            {% for msg in messages %}
-                <!-- all django message tags mirror bootstrap, except error/danger -->
+    <section id="alerts">
+        {% for msg in messages %}
+        <!-- all django message tags mirror bootstrap, except error/danger -->
         <aside
             class="alert {% if msg.tags == 'error' %}alert-danger{% else %}alert-{{ msg.tags }}{% endif %} alert-dismissible rounded-0 text-center"
             role="alert">
-                    <h3>{{ msg }}</h3>
+            <h3>{{ msg }}</h3>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </aside>
-            {% endfor %}
-        </section>
+        </aside>
+        {% endfor %}
+    </section>
     {% endif %}
     <main class="flex-shrink-0 main-bg">
         {% if user.is_authenticated %}

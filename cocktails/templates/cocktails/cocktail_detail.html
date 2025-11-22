@@ -9,20 +9,20 @@
             <div class="col-md-6 masthead-text">
 
                 {% if not cocktail.approved %}
-                    <span class="badge rounded-pill text-bg-warning">Pending Approval</span>
+                <span class="badge rounded-pill text-bg-warning">Pending Approval</span>
                 {% endif %}
                 <h1 class="cocktail-title">{{ cocktail.name }}</h1>
 
                 <!-- is the user logged-in and owns this cocktail -->
                 {% if request.user == cocktail.author %}
-                    <a href="{% url 'update_cocktail' cocktail.pk cocktail.slug %}" class="btn btn-success">Update</a>
+                <a href="{% url 'update_cocktail' cocktail.pk cocktail.slug %}" class="btn btn-success">Update</a>
                 <a href="!" class="btn btn-danger" data-bs-toggle="modal"
                     data-bs-target="#modal-delete-{{ cocktail.id }}">Delete</a>
-                    <!-- confirm delete cocktail modal -->
+                <!-- confirm delete cocktail modal -->
                 <div class="modal fade" id="modal-delete-{{ cocktail.id }}" tabindex="-1"
                     aria-labelledby="modal-delete-{{ cocktail.id }}-label" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="modal-delete-{{ cocktail.id }}-label">Delete Cocktail
                                 </h1>
@@ -39,9 +39,9 @@
                                 <a href="{% url 'delete_cocktail' cocktail.pk cocktail.slug %}"
                                     class="btn btn-success">Confirm Delete</a>
                             </div>
-                            </div>
                         </div>
-                        </div>
+                    </div>
+                </div>
                 {% endif %}
                 <!-- end of cocktail owner buttons -->
 
