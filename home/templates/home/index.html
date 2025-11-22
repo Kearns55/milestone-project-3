@@ -4,14 +4,36 @@
 
 <!-- index.html content starts here -->
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="jumbotron mt-3">
-                <h1 class="display-4">Welcome to Cocktail Recipes!</h1>
-                <p class="lead">Discover and share your favorite cocktail recipes.</p>
-                <hr class="my-4">
-                <p>Browse our collection of delicious cocktails or submit your own recipe.</p>
-                <a class="btn btn-primary btn-lg" href="{% url 'cocktails' %}" role="button">Explore Cocktails</a>
+    <div class="card mb-3" style="max-width: 100%;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% static 'images/cocktail-neon.jpg' %}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title h3">Meet the Owner!</h5>
+        <p class="card-text"><h4>
+                                        After more than five years behind the bar, I've learned
+                                        that great cocktails
+                                        aren't just about ingredients — they're about stories, creativity, and
+                                        community.
+                                    </h4>
+                                    <p class="lead">
+                                        This website is my way of sharing the drinks I've created over the years, as
+                                        well as discovering
+                                        the amazing recipes other people come up with. Whether you're here to browse,
+                                        share, or experiment,
+                                        I hope you find inspiration, new favourites, and maybe even a bit of confidence
+                                        to create something
+                                        of your own.
+                                    </p>
+
+                                    <p class="fw-semibold text-success">
+                                        Sláinte — pull up a stool and welcome to the family!
+                                    </p>
+                                </div>
+        <p class="card-text"><small class="text-body-secondary ">Rebekah, owner of the Gargle Guardian</small></p>
+      </div>
             </div>
         </div>
     </div>
