@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+from .views import CategoryView
 
 
 urlpatterns = [
@@ -20,4 +21,8 @@ urlpatterns = [
         views.delete_cocktail,
         name='delete_cocktail'
     ),
+    path(
+        "category/<int:pk>/", 
+        CategoryView.as_view(),
+        name="category"),
 ]

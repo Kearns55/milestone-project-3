@@ -28,9 +28,23 @@
     </header>
 
     <nav>
-        <a href="{% url 'home' %}">Home</a> |
-        <a href="{% url 'cocktails' %}">Cocktails</a> |
-        <a href="{% url 'contact' %}">Contact Me</a>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Explore Cocktails</a>
+                <ul class="dropdown-menu">
+                    {% for c in categories %}
+                    <li><a class="dropdown-item" href="{% url 'category' c.pk %}">{{ c.name }}</a></li>
+                    {% endfor %}
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'add_cocktail' %}">Add Your Own</a></li>
+                </ul>
+            </li>
 
         {% if user.is_authenticated %}
         <li class="nav-item">

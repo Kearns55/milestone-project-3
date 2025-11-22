@@ -133,3 +133,20 @@ def delete_cocktail(request, pk, slug):
         "Cocktail deleted successfully!"
     )
     return redirect('cocktails')
+
+
+class CategoryView(generic.ListView):
+    model = Cocktail
+    template_name = "cocktails/category.html"
+    context_object_name = "cocktails"
+
+    def get_queryset(self):
+        return Cocktail.objects.filter(
+            category_id=self.kwargs["pk"],
+            approved=True)
+        
+    def get_context_data(self, **kwargs):
+        from .models import Category
+        context = super().get_context_data(**kwargs)
+        context["category"] = Category.objects.get(pk=self.kwargs["pk"])
+        return context
