@@ -90,11 +90,9 @@
         <div class="col card mb-4 left top">
             <div class="card-body">
                 <h3>Instructions</h3>
-                <ol>
-                    {% for step in cocktail.instructions_list %}
-                    <li>{{ step | safe}}</li>
-                    {% endfor %}
-                </ol>
+                <div>
+                    {{ cocktail.instructions|safe }}
+                </div>
             </div>
         </div>
     </div>

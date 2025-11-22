@@ -91,13 +91,6 @@ class Cocktail(models.Model):
             if line.strip()
         ]
 
-    def instructions_list(self):
-        return [
-            line.strip()
-            for line in self.instructions.splitlines()
-            if line.strip()
-        ]
-
 
 class Comment(models.Model):
     """ Comments model for user comments on cocktails. """
