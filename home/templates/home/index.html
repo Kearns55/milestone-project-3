@@ -4,41 +4,47 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid">
-    <div class="card mb-3" style="max-width: 100%;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{% static 'images/cocktail-neon.jpg' %}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title h3">Meet the Owner!</h5>
-        <p class="card-text"><h4>
-                                        After more than five years behind the bar, I've learned
-                                        that great cocktails
-                                        aren't just about ingredients — they're about stories, creativity, and
-                                        community.
-                                    </h4>
-                                    <p class="lead">
-                                        This website is my way of sharing the drinks I've created over the years, as
-                                        well as discovering
-                                        the amazing recipes other people come up with. Whether you're here to browse,
-                                        share, or experiment,
-                                        I hope you find inspiration, new favourites, and maybe even a bit of confidence
-                                        to create something
-                                        of your own.
-                                    </p>
+<div class="container-fluid px-0">
+  <div id="home-card">
+    <div class="row gx-4">
+      <div class="col-md-6 home-image-col">
+        <img src="{% static 'images/cocktail-neon.jpg' %}" class="img-fluid rounded-start w-100" id="home-image"
+          alt="neon sign reading 'cocktails'">
+      </div>
 
-                                    <p class="fw-semibold text-success">
-                                        Sláinte — pull up a stool and welcome to the family!
-                                    </p>
-                                </div>
-        <p class="card-text"><small class="text-body-secondary ">Rebekah, owner of the Gargle Guardian</small></p>
+      <div class="col-md-6 home-text-col">
+        <div class="card-body home-body">
+          <h2 class="card-title">Meet the Owner!</h2>
+          <p class="card-text lead">
+            After more than five years behind the bar, I've learned
+            that great cocktails aren't just about ingredients —
+            they're about stories, creativity, and community.
+          </p>
+
+          <p class="card-text">
+            This website is my way of sharing the drinks I've created
+            over the years, as well as discovering the amazing recipes
+            other people come up with. Whether you're here to browse,
+            share, or experiment, I hope you find inspiration, new
+            favourites, and maybe even a bit of confidence to create
+            something of your own.
+          </p>
+
+          <p class="fw-semibold">
+            Sláinte — pull up a stool and welcome to the family!
+          </p>
+        </div>
+
+        <p class="card-text text-end">
+          <small class="text-body-secondary">
+            Rebekah, owner of the Gargle Guardian
+          </small>
+        </p>
       </div>
     </div>
   </div>
 </div>
-</div>
 
 <!-- index.html content ends here -->
+
 {% endblock %}

@@ -1,57 +1,85 @@
-/* Place Holder stylesheet */
-
-
-/* Reset some default browser spacing */
+/* Headings */
 h1, h2, h3 {
     margin: 0;
     padding: 0;
     font-family: "Bungee Inline", cursive;
 }
 
-/* Basic page font + spacing */
-body, p {
+/* Base */
+body {
     font-family: "Space Grotesk", sans-serif;
-    background-color: #df3e29;
-    padding: 20px;
+    background-color: #ffffff;
+    margin: 0;
 }
 
-/* Header styling */
-header {
-    background-color: #4484b8;
-    padding: 20px;
-    margin-bottom: 20px;
+/* Header */
+#header {
+    background-color: #c92c3e;
     text-align: center;
+    padding: 20px;
 }
 
-/* Navigation bar */
+/* Nav */
 nav {
-    background-color: #d0d0d0;
-    padding: 10px;
-    margin-bottom: 20px;
-    text-align: center;
+    background-color: #9e0029;
+    padding: 10px 0;
 }
 
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
+#nav-list .nav-link {
+    font-weight: bold;
     color: black;
 }
 
-/* Main content area */
+/* Main */
 main {
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ccc;
+    background-color: #faf6f7;
+    border: 8px dashed #9e0029;
+    padding: 40px 50px;
+    padding-bottom:40px;
+    margin-bottom: 20px;
+    max-width: 1400px;
 }
 
+ /* Make default container wider globally */
+.container {
+    max-width: 1400px;
+}
+
+/* Login status */
+.signed-status {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Home card */
+#home-card {
+    background-color: #C48C8C;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px #aa0202;
+    overflow: hidden;
+    padding-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Card text */
+#home-body,
 .card-body {
     font-size: 1.1em;
     line-height: 1.6;
+    padding: 1rem;
+}
+
+/* Home image */
+#home-image {
+    width: 100%;
+    height:108%;
+    object-fit: cover;
+    display: block;
 }
 /* Footer */
-footer {
-    background-color: #e0e0e0;
-    padding: 15px;
-    margin-top: 20px;
+#footer {
+    background-color: #c92c3e;
     text-align: center;
+    padding: 20px;
 }

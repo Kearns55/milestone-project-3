@@ -1,5 +1,4 @@
 {% load static %}
-
 {% url 'home' as home_url %}
 {% url 'cocktails' as cocktails_url %}
 {% url 'add_cocktail' as add_cocktail_url %}
@@ -14,31 +13,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gargle Guardian</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     <!-- Google Fonts -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Space+Grotesk&display=swap');
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Space+Grotesk&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <header>
-        <h1>The Gargle Guardian</h1>
-        <p>Daily Cocktail Recipes!</p>
+    <!-- Header -->
+    <header id="header" class="text-center py-4">
+        <h1 class="mb-1">The Gargle Guardian</h1>
+        <p class="m-0">Daily Cocktail Recipes!</p>
     </header>
 
-    <nav>
-        <ul class="nav nav-tabs">
+    <!-- Navigation -->
+    <nav id="nav-list" class="mb-4">
+        <ul class="nav nav-tabs container">
+
+            <!-- Home -->
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{{ home_url }}">Home</a>
             </li>
+
+            <!-- Explore dropdown -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false">Explore Cocktails</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Explore Cocktails</a>
                 <ul class="dropdown-menu">
                     {% for c in categories %}
                     <li><a class="dropdown-item" href="{% url 'category' c.pk %}">{{ c.name }}</a></li>
@@ -46,66 +52,68 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="{% url 'add_cocktail' %}">Add Your Own</a></li>
+                    <li><a class="dropdown-item" href="{{ add_cocktail_url }}">Add Your Own</a></li>
                 </ul>
             </li>
 
             {% if user.is_authenticated %}
+            <!-- Add cocktail -->
             <li class="nav-item">
-                <a class="nav-link {% if request.path == add_cocktail %}active{% endif %}" aria-current="page"
-                    href="{% url 'add_cocktail' %}">Add Cocktail</a>
+                <a class="nav-link {% if request.path == add_cocktail_url %}active{% endif %}"
+                    href="{{ add_cocktail_url }}">Add Cocktail</a>
             </li>
+            <!-- Logout -->
             <li class="nav-item">
-                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
-                    href="{% url 'account_logout' %}">Sign out</a>
+                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{{ logout_url }}">Sign
+                    out</a>
             </li>
             {% else %}
+            <!-- Login -->
             <li class="nav-item">
-                <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                    href="{% url 'account_login' %}">Sign in</a>
+                <a class="nav-link {% if request.path == login_url %}active{% endif %}" href="{{ login_url }}">Sign
+                    in</a>
             </li>
+            <!-- Register -->
             <li class="nav-item">
-                <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                    href="{% url 'account_signup' %}">Register</a>
-            </li>
-
+                <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
+                    href="{{ signup_url }}">Register</a>
             </li>
             {% endif %}
         </ul>
     </nav>
-    <!-- displaying Django messages -->
+
+    <!-- Alerts -->
     {% if messages %}
-    <section id="alerts">
+    <section id="alerts" class="container mb-3">
         {% for msg in messages %}
-        <!-- all django message tags mirror bootstrap, except error/danger -->
         <aside
-            class="alert {% if msg.tags == 'error' %}alert-danger{% else %}alert-{{ msg.tags }}{% endif %} alert-dismissible rounded-0 text-center"
-            role="alert">
-            <h3>{{ msg }}</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            class="alert {% if msg.tags == 'error' %}alert-danger{% else %}alert-{{ msg.tags }}{% endif %} alert-dismissible text-center">
+            <strong>{{ msg }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </aside>
         {% endfor %}
     </section>
     {% endif %}
-    <main class="flex-shrink-0 main-bg">
+
+    <!-- Main Content -->
+    <main class="container flex-shrink-0">
+
         {% if user.is_authenticated %}
-        <p class="text-end m-3">You are signed in as {{ user }}</p>
+        <p class="text-end signed-status">Signed in as {{ user }}</p>
         {% else %}
-        <p class="text-end m-3">You are not signed in</p>
+        <p class="text-end signed-status">You are not signed in</p>
         {% endif %}
 
         {% block content %}
-        <!-- Content Goes here -->
-
-        {% endblock content %}
-
+        {% endblock %}
     </main>
-    <footer>
-        <p>© 2025 Kearns</p>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-3 text-center mt-4">
+        <p class="m-0">© 2025 Kearns</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
