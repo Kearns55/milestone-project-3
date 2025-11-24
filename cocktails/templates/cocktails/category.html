@@ -1,20 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="container mt-4">
     <h1>{{ category.name }} Cocktails</h1>
 
     {% if cocktails %}
-        <ul>
+    <div class="row g-4 mt-3">  
+        
         {% for cocktail in cocktails %}
-            <li>
-                <a href="{% url 'cocktail_detail' cocktail.pk cocktail.slug %}">
-                    {{ cocktail.name }}
-                </a>
-            </li>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">  
+            <div class="card h-100">
+                <img src="{{ cocktail.image.url }}" class="card-img-top" alt="{{ cocktail.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ cocktail.name }}
+                    </h5>
+                    <div class="card-text">
+                        {{ cocktail.description|safe }}
+                    </div>
+                    <a href="{% url 'cocktail_detail' cocktail.pk cocktail.slug %}" class="btn btn-primary">
+                        View Recipe
+                    </a>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-        </ul>
+
+    </div>
     {% else %}
-        <p>No cocktails found in this category yet.</p>
+    <p>No cocktails found in this category yet.</p>
     {% endif %}
 </div>
+
 {% endblock %}

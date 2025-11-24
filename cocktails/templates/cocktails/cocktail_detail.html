@@ -50,7 +50,7 @@
                 </p>
             </div>
 
-            <div class="d-none d-md-block col-md-6 masthead-image">
+            <div class="d-md-block col-md-6 col-lg-6 masthead-image" id="cocktail-img">
                 {% if cocktail.image %}
                 <img src="{{ cocktail.image.url }}" alt="{{ cocktail.name }}" class="img-fluid rounded shadow">
                 {% endif %}
@@ -91,7 +91,7 @@
             <div class="card-body">
                 <h3>Instructions</h3>
                 <div>
-                    {{ cocktail.instructions|safe }}
+                    {{ cocktail.instructions|safe|linebreaks }}
                 </div>
             </div>
         </div>

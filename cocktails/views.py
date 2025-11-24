@@ -9,7 +9,7 @@ from .forms import CommentForm, CocktailForm
 
 class CocktailListView(generic.ListView):
     template_name = "cocktails/cocktails.html"
-    paginate_by = 6
+    paginate_by = 4
 
     def get_queryset(self):
         queryset = Cocktail.objects.all()

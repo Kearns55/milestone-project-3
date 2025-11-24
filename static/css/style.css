@@ -77,9 +77,32 @@ main {
     object-fit: cover;
     display: block;
 }
+
+.card-img-top {
+    height: 400px;     
+    object-fit: cover;  
+    width: 100%;
+}
+
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+#cocktail-img{
+    max-width: 25%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px #aa0202;
+    margin-top: 20px;
+}
 /* Footer */
 #footer {
     background-color: #c92c3e;
     text-align: center;
     padding: 20px;
+    width: 100%;
 }
