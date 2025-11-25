@@ -6,22 +6,29 @@ h1, h2, h3 {
 }
 
 /* Base */
-body {
+html, body {
     font-family: "Space Grotesk", sans-serif;
     background-color: #ffffff;
     margin: 0;
+    height: 100%;
 }
 
 /* Header */
 #header {
-    background-color: #c92c3e;
+    background-color:#FD1E38; 
     text-align: center;
     padding: 20px;
 }
 
+#daily-cocktails {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: black;
+}
+
 /* Nav */
 nav {
-    background-color: #9e0029;
+    background-color: #FD1E38;
     padding: 10px 0;
 }
 
@@ -33,7 +40,7 @@ nav {
 /* Main */
 main {
     background-color: #faf6f7;
-    border: 8px dashed #9e0029;
+    border: 8px dashed #FD1E38;
     padding: 40px 50px;
     padding-bottom:40px;
     margin-bottom: 20px;
@@ -91,6 +98,21 @@ main {
     overflow: hidden;
 }
 
+h2.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #212529;
+}
+
+a {
+    text-decoration:none;
+    color: #; 
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #aa0202; 
+}
 
 #cocktail-img{
     max-width: 25%;
@@ -101,8 +123,10 @@ main {
 }
 /* Footer */
 #footer {
-    background-color: #c92c3e;
+    background-color: #FD1E38;
     text-align: center;
-    padding: 20px;
     width: 100%;
+    font-size: 25px;
+    position:sticky;
+    top: 100vh;
 }

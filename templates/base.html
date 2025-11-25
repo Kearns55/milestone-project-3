@@ -30,7 +30,7 @@
     <!-- Header -->
     <header id="header" class="text-center py-4">
         <h1 class="mb-1">The Gargle Guardian</h1>
-        <p class="m-0">Daily Cocktail Recipes!</p>
+        <p class="m-0" id="daily-cocktails">Daily Cocktail Recipes!</p>
     </header>
 
     <!-- Navigation -->
@@ -53,10 +53,12 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
+                     {% if user.is_authenticated %}
                     <li><a class="dropdown-item" href="{{ add_cocktail_url }}">Add Your Own</a></li>
+                    {% endif %}
                 </ul>
             </li>
-
+            <a class="nav-link" href="{{ cocktails_url }}">All Cocktails</a>
             {% if user.is_authenticated %}
             <!-- Add cocktail -->
             <li class="nav-item">
