@@ -106,7 +106,7 @@ h2.card-title {
 
 a {
     text-decoration:none;
-    color: #; 
+    color: black;
 }
 
 a:hover {
@@ -120,6 +120,11 @@ a:hover {
     border-radius: 10px;
     box-shadow: 0 4px 12px #aa0202;
     margin-top: 20px;
+}
+
+#submit {
+    border: none;
+    color: black;
 }
 /* Footer */
 #footer {
