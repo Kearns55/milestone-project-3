@@ -38,60 +38,77 @@
         <p class="m-0" id="daily-cocktails">Daily Cocktail Recipes!</p>
     </header>
 
-    <!-- Navigation -->
-    <nav id="nav-list" class="mb-4">
-        <ul class="nav nav-tabs container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md mb-4 d-flex align-items-center" id="nav-list" style="background-color:#FD1E38;">
+        <div class="container d-flex align-items-center">
 
-            <!-- Home -->
-            <li class="nav-item">
-                <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{{ home_url }}">Home</a>
-            </li>
+            <!-- HOME TAB (always visible, left) -->
+            <ul class="nav nav-tabs me-auto mb-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == home_url %}active{% endif %}"
+                        href="{{ home_url }}">Home</a>
+                </li>
+            </ul>
 
-            <!-- Explore dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Explore Cocktails</a>
-                <ul class="dropdown-menu">
+            <!-- Burger button (right) -->
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    {% for c in categories %}
-                    <li><a class="dropdown-item" href="{% url 'category' c.pk %}">{{ c.name }}</a></li>
-                    {% endfor %}
-                    <li>
-                        <hr class="dropdown-divider">
+            <!-- Collapsible menu -->
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="nav nav-tabs ms-md-3 mt-3 mt-md-0">
+
+                    <!-- Explore dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                            Explore Cocktails
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for c in categories %}
+                            <li><a class="dropdown-item" href="{% url 'category' c.pk %}">{{ c.name }}</a></li>
+                            {% endfor %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{{ add_cocktail_url }}">Add Your Own</a></li>
+                            {% endif %}
+                        </ul>
                     </li>
-                    {% if user.is_authenticated %}
-                    <li><a class="dropdown-item" href="{{ add_cocktail_url }}">Add Your Own</a></li>
-                    {% endif %}
-                </ul>
-            </li>
-            <a class="nav-link" href="{{ cocktails_url }}">All Cocktails</a>
-            {% if user.is_authenticated %}
-            <!-- Add cocktail -->
-            <li class="nav-item">
-                <a class="nav-link {% if request.path == add_cocktail_url %}active{% endif %}"
-                    href="{{ add_cocktail_url }}">Add Cocktail</a>
-            </li>
-            <!-- Logout -->
-            <li class="nav-item">
-                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{{ logout_url }}">Sign
-                    out</a>
-            </li>
-            {% else %}
-            <!-- Login -->
-            <li class="nav-item">
-                <a class="nav-link {% if request.path == login_url %}active{% endif %}" href="{{ login_url }}">Sign
-                    in</a>
-            </li>
-            <!-- Register -->
-            <li class="nav-item">
-                <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
-                    href="{{ signup_url }}">Register</a>
-            </li>
-            {% endif %}
-            <li class="nav-item text-end">
-                <a class="nav-link" href="{% url 'contact' %}">Contact Me</a>
-        </ul>
-    </nav>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ cocktails_url }}">All Cocktails</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}"
+                            href="{{ logout_url }}">Sign out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == login_url %}active{% endif %}"
+                            href="{{ login_url }}">Sign in</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
+                            href="{{ signup_url }}">Register</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Me</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
     <!-- Alerts -->
     {% if messages %}
     <section id="alerts" class="container mb-3">
@@ -123,7 +140,8 @@
         <p class="m-0">© 2025 Kearns</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
 </body>
 
 </html>
