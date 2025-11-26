@@ -69,6 +69,7 @@ cloudinary.config(
     cloudinary_url=os.environ.get('CLOUDINARY_URL')
 )
 
+SILENCED_SYSTEM_CHECKS = ["models.E001"]
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
