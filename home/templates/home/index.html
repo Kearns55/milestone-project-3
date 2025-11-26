@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block main_width %}container-fluid px-0{% endblock %}
+
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid px-0">
+<div>
   <div id="home-card">
     <div class="row gx-4">
-      <div class="col-md-6 home-image-col">
+      <div class="col-lg-6 home-image-col">
         <img src="{% static 'images/cocktail-neon.jpg' %}" class="img-fluid rounded-start w-100" id="home-image"
           alt="neon sign reading 'cocktails'">
       </div>
 
-      <div class="col-md-6 home-text-col">
+      <div class="col-lg-6 home-text-col">
         <div class="card-body home-body">
           <h2 class="card-title">Meet the Owner!</h2>
+
           <p class="card-text lead">
             After more than five years behind the bar, I've learned
             that great cocktails aren't just about ingredients —
@@ -36,14 +39,13 @@
         </div>
 
         <p class="card-text text-end" id="owner-text">
-          <small class="text-body-secondary">
-            Rebekah, owner 
-          </small>
+          <small class="text-body-secondary">Rebekah, owner</small>
         </p>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- index.html content ends here -->
 
