@@ -46,17 +46,14 @@ nav {
 /* Main */
 #main-content {
     background-color: #faf6f7;
-    border: 8px dashed #FD1E38;
-    border-width: 4px;
-    padding: 20px;
-    padding-bottom:40px;
+    border: dashed #FD1E38;
+    border-width: 8px;
     margin-bottom: 20px;
-    max-width: 1400px;
-}
-
- /* Make default container wider globally */
-.container {
-    max-width: 1400px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+   
 }
 
 /* Login status */
@@ -74,17 +71,12 @@ nav {
     margin: 1rem;
 }
 
+#home-image {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
 
-/* Tablet landscape fix  */
-@media (max-width: 1024px) {
-    .home-image-col #home-image {
-        height: 100%;
-        object-fit: cover;
-    }
 }
-
-
-
 /* Card text */
 #home-body,
 .card-body {
@@ -97,15 +89,6 @@ p {
     max-width: 70ch;
     margin-left: auto;
     margin-right: auto;
-}
-
-
-/* Home image */
-#home-image {
-    width: 100%;
-    height:auto;
-    object-fit: cover;
-    display: block;
 }
 
 .card-img-top {
@@ -158,8 +141,20 @@ a:hover {
     background-color: #aa0202;
 }
 .page-link {
-    color: black;
+    color: white;
     font-weight: bold;
+    background-color: #FD1E38;
+    border: none;
+}
+
+.page-link:hover {
+    background-color: #aa0202;
+    color: white;
+}
+
+.page-link:focus {
+    background-color: #aa0202;
+    color: white;
 }
 
 /* Footer */
