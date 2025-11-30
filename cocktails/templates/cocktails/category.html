@@ -20,7 +20,7 @@
                 {% if cocktail.image %}
                 <img src="{{ cocktail.image.url }}" class="card-img-top" alt="{{ cocktail.name }}">
                 {% else %}
-                <img src="{% static 'images/cocktail-neon.jpg' %}" class="card-img-top" alt="Default Cocktail Image">
+                <img src="{% static 'images/default-img.jpg' %}" class="card-img-top" alt="Default Cocktail Image">
                 {% endif %}
                 <div class="card-body">
                     {% if not cocktail.approved %}
