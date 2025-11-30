@@ -3,16 +3,14 @@ from django.views import generic
 from django.db.models import Q
 from django.contrib import messages
 from django.utils.text import slugify
-from .models import Cocktail
+from .models import Cocktail, Category
 from .forms import CommentForm, CocktailForm
 
 
 class CocktailListView(generic.ListView):
     template_name = "cocktails/cocktails.html"
-    
+
     def get_paginate_by(self, queryset):
-        if self.request.path == '/':
-            return 4  # Home page shows 4 cocktails per page
         return 6  # Cocktails page shows 6 cocktails per page
 
     def get_queryset(self):
@@ -144,13 +142,21 @@ class CategoryView(generic.ListView):
     template_name = "cocktails/category.html"
     context_object_name = "cocktails"
 
+    def get_paginate_by(self, queryset):
+        return 4  # Category page shows 4 cocktails per page
+
     def get_queryset(self):
-        return Cocktail.objects.filter(
-            category_id=self.kwargs["pk"],
-            approved=True)
-        
+        queryset = Cocktail.objects.filter(category_id=self.kwargs["pk"])
+        if self.request.user.is_authenticated:
+            # Show:
+            # - all approved cocktails in this category
+            # - and this user's cocktails in this category even if not approved
+            return queryset.filter(
+                Q(approved=True) | Q(author=self.request.user)
+            ).distinct()
+        return queryset.filter(approved=True)
+
     def get_context_data(self, **kwargs):
-        from .models import Category
         context = super().get_context_data(**kwargs)
         context["category"] = Category.objects.get(pk=self.kwargs["pk"])
         return context

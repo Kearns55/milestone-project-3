@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Cocktail, Comment
+from .models import Cocktail, Comment, GlassType, Category, SourceType
 
 
 @admin.register(Cocktail)
@@ -14,3 +14,6 @@ class CocktailAdmin(SummernoteModelAdmin):
 
 # Register your models here.
 admin.site.register(Comment)
+admin.site.register(Category)
+admin.site.register(GlassType)
+admin.site.register(SourceType)
