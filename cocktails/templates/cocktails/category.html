@@ -1,17 +1,31 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
 <div class="container mt-4 cocktail-card">
-    <h1>{{ category.name }} Cocktails</h1>
+    <h1>
+        {% if category.name == 'Mocktail' %}
+        {{ category.name }}s
+        {% else %}
+        {{ category.name }} Cocktails
+        {% endif %}
+    </h1>
 
     {% if cocktails %}
-    <div class="row g-4 mt-3">  
-        
+    <div class="row g-4 mt-3">
+
         {% for cocktail in cocktails %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">  
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100">
+                {% if cocktail.image %}
                 <img src="{{ cocktail.image.url }}" class="card-img-top" alt="{{ cocktail.name }}">
+                {% else %}
+                <img src="{% static 'images/cocktail-neon.jpg' %}" class="card-img-top" alt="Default Cocktail Image">
+                {% endif %}
                 <div class="card-body">
+                    {% if not cocktail.approved %}
+                    <span class="badge rounded-pill text-bg-warning">Pending Approval</span>
+                    {% endif %}
                     <h5 class="card-title">
                         {{ cocktail.name }}
                     </h5>
@@ -29,6 +43,18 @@
     </div>
     {% else %}
     <p>No cocktails found in this category yet.</p>
+    {% endif %}
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     {% endif %}
 </div>
 
