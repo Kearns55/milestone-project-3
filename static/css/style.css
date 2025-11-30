@@ -126,8 +126,7 @@ a:hover {
     color: #aa0202; 
 }
 
-#cocktail-img{
-    width: 100%;
+.cocktail-img{
     max-width: 600%;
     height: auto;
     border-radius: 10px;
@@ -155,6 +154,12 @@ a:hover {
 .page-link:focus {
     background-color: #aa0202;
     color: white;
+}
+
+#signup {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Footer */

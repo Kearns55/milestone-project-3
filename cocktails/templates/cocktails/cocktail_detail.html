@@ -50,10 +50,12 @@
                 </p>
             </div>
 
-            {% if cocktail.image %}
             <div class="col-12 col-lg-6">
-                <img src="{{ cocktail.image.url }}" alt="{{ cocktail.title }}" class="img-fluid w-100"
-                    id="cocktail-img">
+                {% if cocktail.image %}
+                <img src="{{ cocktail.image.url }}" alt="{{ cocktail.title }}" class="img-fluid w-100 cocktail-img">
+                {% else %}
+                <img src="{% static 'images/default-img.jpg' %}" alt="Default Cocktail Image" class="img-fluid w-100 cocktail-img"
+                    id="default-img">
                 {% endif %}
             </div>
         </div>
