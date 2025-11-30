@@ -29,14 +29,14 @@ html, body {
 }
 
 /* Nav */
-nav {
-    background-color: #FD1E38;
+#nav {
     margin-top: 0;
+    background-color: #4a0c17;
 }
 
-#nav-list .nav-link {
-    font-weight: bold;
-    color: black;
+.nav-link {
+    color: white;
+    
 }
 
 .navbar-toggler-icon {
@@ -108,6 +108,7 @@ nav {
     font-style: italic;
     margin-top: 5px;
     padding-right: 10px;
+    color: #1e2022;
 }
 
 h2.card-title {
@@ -142,17 +143,17 @@ a:hover {
 .page-link {
     color: white;
     font-weight: bold;
-    background-color: #FD1E38;
+    background-color: #4a0c17;
     border: none;
 }
 
 .page-link:hover {
-    background-color: #aa0202;
+    background-color: #4a0c17;
     color: white;
 }
 
 .page-link:focus {
-    background-color: #aa0202;
+    background-color: #4a0c17;
     color: white;
 }
 
