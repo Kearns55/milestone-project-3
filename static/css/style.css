@@ -156,6 +156,11 @@ a:hover {
     color: white;
 }
 
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #signup {
     text-align: center;
     margin-top: 20px;
