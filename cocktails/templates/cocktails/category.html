@@ -29,7 +29,7 @@
                     <h5 class="card-title">
                         {{ cocktail.name }}
                     </h5>
-                    <div class="card-text" id="category-text">
+                    <div class="card-text category-text">
                         {{ cocktail.description|safe }}
                     </div>
                     <a href="{% url 'cocktail_detail' cocktail.pk cocktail.slug %}" class="btn btn-danger">

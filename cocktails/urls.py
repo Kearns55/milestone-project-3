@@ -22,7 +22,7 @@ urlpatterns = [
         name='delete_cocktail'
     ),
     path(
-        "category/<int:pk>/", 
+        "category/<int:pk>/",
         CategoryView.as_view(),
         name="category"
     ),
@@ -36,5 +36,5 @@ urlpatterns = [
         views.delete_comment,
         name="delete_comment"
     ),
-    
+
 ]

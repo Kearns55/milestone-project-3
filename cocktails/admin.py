@@ -5,10 +5,11 @@ from .models import Cocktail, Comment, GlassType, Category, SourceType
 
 @admin.register(Cocktail)
 class CocktailAdmin(SummernoteModelAdmin):
-    list_display = ('name', 'author', 'created_on', 'glass_type', 'source_type')
+    list_display = ('name', 'author', 'created_on',
+                    'glass_type', 'source_type')
     list_filter = ('created_on', 'glass_type', 'source_type', 'author')
-    search_fields = ('name', 'description', 'ingredients', 'instructions'
-                     , 'author__username')
+    search_fields = ('name', 'description', 'ingredients', 'instructions',
+                     'author__username')
     summernote_fields = ('instructions', 'description')
 
 

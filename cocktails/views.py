@@ -180,7 +180,8 @@ def delete_comment(request, pk, slug):
         request,
         "Comment deleted successfully!"
     )
-    return redirect("cocktail_detail", pk=comment.cocktail.pk, slug=comment.cocktail.slug)
+    return redirect("cocktail_detail",
+                    pk=comment.cocktail.pk, slug=comment.cocktail.slug)
 
 
 class CategoryView(generic.ListView):
