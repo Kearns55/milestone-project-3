@@ -143,6 +143,46 @@
                     <div id="comment{{ comment.id }}">
                         {{ comment.body | linebreaks }}
                     </div>
+                    {% if comment.author == user %}
+                <!-- Comment owner buttons -->
+                <div class="mt-2">
+                    <a href="{% url 'update_comment' comment.pk cocktail.slug %}" class="btn btn-success btn-sm">
+                        Edit
+                    </a>
+
+                    <!-- Delete Button (opens modal) -->
+                    <button class="btn btn-danger btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteCommentModal{{ comment.id }}">
+                        Delete
+                    </button>
+                </div>
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteCommentModal{{ comment.id }}" tabindex="-1"
+                     aria-labelledby="deleteCommentModalLabel{{ comment.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteCommentModalLabel{{ comment.id }}">
+                                    Delete Comment
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this comment?
+                                <br><small class="text-secondary">This cannot be undone.</small>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <a href="{% url 'delete_comment' comment.pk cocktail.slug %}" class="btn btn-danger">
+                                    Confirm Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                     {% if not comment.approved and comment.author == user %}
                     <p class="approval">
                         This comment is awaiting approval
@@ -171,5 +211,4 @@
         </div>
     </div>
 </div>
-
 {% endblock content %}

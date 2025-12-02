@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.utils.text import slugify
 from .models import Cocktail, Category
 from .forms import CommentForm, CocktailForm
+from .forms import Comment
 
 
 class CocktailListView(generic.ListView):
@@ -135,6 +136,51 @@ def delete_cocktail(request, pk, slug):
         "Cocktail deleted successfully!"
     )
     return redirect('cocktails')
+
+
+def update_comment(request, pk, slug):
+    """ Update a specific comment for authenticated users only. """
+    comment = get_object_or_404(Comment, pk=pk)
+    # Check if valid user to edit this comment
+    if comment.author != request.user:
+        messages.error(request, "Access Denied: Not your comment")
+        return redirect("cocktails")
+    # Correct user, proceed with update
+    comment_form = CommentForm(request.POST or None, instance=comment)
+    if request.method == 'POST':
+        if comment_form.is_valid():
+            comment_form.instance.approved = False
+            comment_form.save()
+            messages.success(
+                request,
+                "Comment updated successfully, and pending!"
+            )
+            return redirect(
+                cocktail_detail, pk=comment.cocktail.pk,
+                slug=comment.cocktail.slug)
+        messages.error(request, 'Error updating comment, please try again.')
+    template = "cocktails/update_comment.html"
+    context = {
+        'form': comment_form,
+        'comment': comment,
+    }
+    return render(request, template, context)
+
+
+def delete_comment(request, pk, slug):
+    """ Delete a specific comment for authenticated users only. """
+    comment = get_object_or_404(Comment, pk=pk)
+    # Check if valid user to delete this comment
+    if comment.author != request.user:
+        messages.error(request, "Access Denied: Not your comment")
+        return redirect("cocktails")
+    # Correct user, proceed with delete
+    comment.delete()
+    messages.success(
+        request,
+        "Comment deleted successfully!"
+    )
+    return redirect("cocktail_detail", pk=comment.cocktail.pk, slug=comment.cocktail.slug)
 
 
 class CategoryView(generic.ListView):

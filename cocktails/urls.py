@@ -24,5 +24,17 @@ urlpatterns = [
     path(
         "category/<int:pk>/", 
         CategoryView.as_view(),
-        name="category"),
+        name="category"
+    ),
+    path(
+        "update_comment/<int:pk>/<slug:slug>/",
+        views.update_comment,
+        name="update_comment"
+    ),
+    path(
+        "delete_comment/<int:pk>/<slug:slug>/",
+        views.delete_comment,
+        name="delete_comment"
+    ),
+    
 ]
