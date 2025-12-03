@@ -82,10 +82,13 @@ class Cocktail(models.Model):
     def __str__(self):
         if not self.name:
             return "No Name Cocktail"
+
         vowels = 'AEIOU'
-        article = 'an' if self.name[0] in vowels else 'a'
-        return
-        f"This recipe for {article} {self.name} | was written by {self.author}"
+        article = 'an' if self.name[0].upper() in vowels else 'a'
+        return (
+            f"This recipe for {article} {self.name} | "
+            f"was written by {self.author}"
+        )
 
     # Helpers — MUST be inside the class
     def ingredients_list(self):
