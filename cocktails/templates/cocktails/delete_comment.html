@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col">
             Delete Comment
-            <form action="{% url 'update_comment' comment.pk comment.cocktail.slug %}" method="post">
+            <form action="{% url 'delete_comment' comment.pk comment.cocktail.slug %}" method="post">
                 {% csrf_token %}
                 {{ form | crispy }}
                 <button type="submit" class="btn btn-danger">Delete</button>
