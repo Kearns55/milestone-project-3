@@ -159,11 +159,10 @@
 
                     <!-- Delete Modal -->
                     <div class="modal fade" id="deleteCommentModal{{ comment.id }}" tabindex="-1" role="dialog"
-                        aria-labelledby="deleteCommentModalLabel{{ comment.id }}" aria-modal="true" aria-hidden="true">
+                        aria-modal="true" aria-labelledby="deleteCommentModalLabel{{ comment.id }}" aria-hidden="true">
 
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="deleteCommentModalLabel{{ comment.id }}">
                                         Delete Comment
@@ -183,10 +182,10 @@
                                         Confirm Delete
                                     </a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
+
 
                     {% endif %}
                     {% if not comment.approved and comment.author == user %}
