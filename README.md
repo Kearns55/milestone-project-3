@@ -9,7 +9,7 @@ Developer: Rebekah Kearns ([Kearns55](https://www.github.com/Kearns55))
 
 
 ## Overview:
-*The Gargle Guardian is a blog site centered around sharing your favourite cocktails and hopefully finding some new ones! The purpose of this site is to share all kinds of cocktail recipes, from classics like an Old Fashioned to that one your friend made in a random kitchen at 4am that was "actually really nice.." I have had this idea of a cocktail sharing based wesbite for many years and with the opportunity finally arising with this project, I knew I had to go for it. Hopefully you find a new go-to in the bar or even add our own to the site! Pull up a stool and welcome to the family.*
+*The Gargle Guardian is a blog site centered around sharing your favourite cocktails and hopefully finding some new ones! The purpose of this site is to share all kinds of cocktail recipes, from classics like an Old Fashioned to that one your friend made in a random kitchen at 4am that was "actually really nice.." I have had this idea of a cocktail sharing based wesbite for many years and with the opportunity finally arising with this project, I knew I had to go for it. Hopefully you find a new go-to in the bar or even add your own to the site! Pull up a stool and welcome to the family.*
 
 **Site Mockups**
 
@@ -533,5 +533,6 @@ There are no remaining major differences between the local version when compared
 - I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) for the support throughout the development of this project.
 - I would like to thank the [Code Institute Slack community](https://code-institute-room.slack.com) and [Code Institute Discord community](https://discord-portal.codeinstitute.net) for the moral support; it kept me going during periods of self doubt and impostor syndrome.
 - I would like to thank my partner, for believing in me, and allowing me to make this transition into software development.
+
 
 
